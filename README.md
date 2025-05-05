@@ -1,5 +1,6 @@
 # Esercizio 1A
--[Esercizio acceso_spento_2](Esercizio_1A/acceso_spento_2.html)
+
+-[🔗 Esercizio acceso spento 2](Esercizio_1A/acceso_spento_2.html)
 
 
 # Esercizio 1B
