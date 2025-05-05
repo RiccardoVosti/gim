@@ -1,5 +1,5 @@
 # Esercizio 1A
-Bla
+-[(https://github.com/RiccardoVosti/gim/blob/main/Esercizio_1A/acceso_spento_2.html)]
 
 
 # Esercizio 1B
