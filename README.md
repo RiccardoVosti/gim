@@ -11,8 +11,7 @@
 
 
 # Esercizio 1B
-Bla
-gia
+- [Animazione logo](/Esercizio_1B/index.html)
 
 
 # Esercizio 1C
