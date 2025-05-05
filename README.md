@@ -1,6 +1,6 @@
 # Esercizio 1A
 
--[🔗 Esercizio acceso spento 2](https://github.com/RiccardoVosti/gim/blob/main/Esercizio_1A/rotazione_2.html)
+-[🔗 Esercizio acceso spento 2](/Esercizio_1A/acceso_spento_2.html)
 
 
 # Esercizio 1B
