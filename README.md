@@ -4,7 +4,7 @@
 
 # Esercizio 1B
 Bla
-
+gia
 
 
 # Esercizio 1C
