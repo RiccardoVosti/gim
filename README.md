@@ -1,6 +1,6 @@
 # Esercizio 1A
 
--[🔗 Esercizio acceso spento 2](Esercizio_1A/acceso_spento_2.html)
+-[🔗 Esercizio acceso spento 2](file:///D:/SUPSI/2_semestre/CV225.03%E2%80%8E%20Grafica%20in%20movimento/gim/Esercizio_1A/acceso_spento_2.html)
 
 
 # Esercizio 1B
