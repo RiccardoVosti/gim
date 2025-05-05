@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="UTF-8"/>
+	<meta charset="UTF-8" />
 	<meta name="author" content="Nome Cognome" />
 	<title>Rotazione 2</title>
 	<style type="text/css">
-		html{
-			height:100%;
+		html {
+			height: 100%;
 		}
-		body{
-			background-color: rgb(235,235,235);
+
+		body {
+			background-color: rgb(235, 235, 235);
 			margin: 3em 2em;
 		}
 	</style>
 
 </head>
+
 <body>
 
 	<img />
@@ -32,8 +35,9 @@
 			const img = document.querySelector("img")
 			img.src = sequenza[frame]
 			frame = (frame + 1) % sequenza.length
-		}, 50)
+		}, 200)
 
 	</script>
 </body>
+
 </html>
