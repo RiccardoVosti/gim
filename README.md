@@ -25,7 +25,7 @@ Trovo il testo molto interessante come pone il mondo fantasioso degli oggetti an
 
 
 # Esercizio 2
-Bla
+- [Parallasse] (/Esercizio2/index.html)
 
 
 
