@@ -28,6 +28,10 @@ Trovo il testo molto interessante come pone il mondo fantasioso degli oggetti an
 - [Parallasse] (/)
 
 
+# Esercizio 3B
+- [Orologio] (/Esercizio_3B/index.html)
+
+
 
 
 
