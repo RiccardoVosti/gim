@@ -29,7 +29,7 @@ Trovo il testo molto interessante come pone il mondo fantasioso degli oggetti an
 
 
 # Esercizio 3B
-- [Orologio] (https://riccardovosti.github.io/gim/Esercizio_3B/index.html)
+- [Orologio](https://riccardovosti.github.io/gim/Esercizio_3B/index.html)
 
 
 
