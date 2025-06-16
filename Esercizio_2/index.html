@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Multiplane Camera with Space Particles</title>
+
+  <style>
+    body {
+      margin: 0;
+      background-color: rgb(17, 17, 17);
+      overflow: hidden;
+      font-family: "Roboto Mono", monospace;
+    }
+
+    main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+    }
+
+    #container {
+      display: grid;
+      place-items: center;
+      transform-style: preserve-3d;
+      perspective: 5000px;
+      width: min(75vw, 75vh);
+    }
+
+    .layer {
+      grid-area: 1 / 1 / 2 / 2;
+      user-select: none;
+      pointer-events: none;
+      width: 100%;
+      display: inline-block;
+    }
+
+    .layer img {
+      width: 100%;
+      display: block;
+    }
+
+    #coords {
+      color: greenyellow;
+      position: relative;
+      user-select: none;
+      pointer-events: none;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="spaceCanvas"></canvas>
+
+  <main>
+    <div id="container">
+      <div class="layer" style="translate: 0 0 -1200px;">
+        <img src="img/2.png" alt="Layer 1" />
+      </div>
+
+      <div class="layer" id="box" style="translate: 0 0 -800px;">
+        <img src="img/4.png" alt="Layer 2" />
+      </div>
+
+      <div class="layer" id="img3" style="translate: 0 0 -300px;">
+        <img src="img/3.png" alt="Layer 3" />
+      </div>
+
+      <div class="layer" style="translate: 0 0 200px;">
+        <img src="img/5.gif" alt="Layer 4" />
+        <p id="coords">Sposta il mouse...</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Rotazione container con il mouse
+    const container = document.getElementById('container');
+    document.body.addEventListener('mousemove', (e) => {
+      const x = (e.clientX - window.innerWidth / 2) / window.innerWidth * Math.PI * 0.75;
+      const y = -(e.clientY - window.innerHeight / 2) / window.innerHeight * Math.PI * 0.75;
+      container.style.transform = `rotateX(${y}rad) rotateY(${x}rad)`;
+    });
+
+    // Mostra coordinate X nel testo
+    const coordsText = document.getElementById("coords");
+    document.addEventListener("mousemove", (event) => {
+      const x = event.clientX;
+      coordsText.textContent = `${x}°N`;
+    });
+
+    // Rotazione layer #box basata sulla velocità del mouse
+    const box = document.getElementById("box");
+    let rotation = 0;
+    let targetSpeed = 0;
+    let currentSpeed = 0;
+    let lastX = null;
+    let lastTime = null;
+    let mouseStillTimeout;
+
+    document.addEventListener("mousemove", (event) => {
+      const now = Date.now();
+      const currentX = event.clientX;
+
+      if (lastX !== null && lastTime !== null) {
+        const deltaX = currentX - lastX;
+        const deltaTime = now - lastTime;
+        const rawSpeed = deltaX / deltaTime;
+        targetSpeed = Math.max(Math.min(rawSpeed * 5, 3), -3);
+      }
+
+      lastX = currentX;
+      lastTime = now;
+
+      clearTimeout(mouseStillTimeout);
+      mouseStillTimeout = setTimeout(() => {
+        targetSpeed = 0;
+      }, 200);
+    });
+
+    function animate() {
+      currentSpeed += (targetSpeed - currentSpeed) * 0.05;
+      if (Math.abs(currentSpeed) < 0.001) currentSpeed = 0;
+      rotation += currentSpeed;
+      box.style.transform = `translateZ(-800px) rotate(${rotation}deg)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Scala #img3 in base alla posizione del mouse dentro un rettangolo 600x600 centrato
+    const img3 = document.getElementById("img3");
+    document.addEventListener("mousemove", (e) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const rectWidth = 600;
+      const rectHeight = 600;
+
+      const dx = Math.abs(e.clientX - centerX);
+      const dy = Math.abs(e.clientY - centerY);
+
+      const isInsideX = dx <= rectWidth / 2;
+      const isInsideY = dy <= rectHeight / 2;
+
+      if (isInsideX && isInsideY) {
+        const ratioX = dx / (rectWidth / 2);
+        const ratioY = dy / (rectHeight / 2);
+        const proximityRatio = Math.max(ratioX, ratioY);
+        const scale = 0.2 + proximityRatio * 0.2;
+        img3.style.transform = `scale(${scale})`;
+      } else {
+        img3.style.transform = `scale(1)`;
+      }
+    });
+
+    // Particelle circolari che si muovono dal centro verso l'esterno
+    const canvas = document.getElementById("spaceCanvas");
+    const ctx = canvas.getContext("2d");
+    let w, h;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.angle = Math.random() * 2 * Math.PI;
+        this.radius = 0;
+        this.speed = 1 + Math.random() * 3;
+        this.size = 1 + Math.random() * 2;
+        this.alpha = 0.1 + Math.random() * 0.3;
+      }
+      update() {
+        this.radius += this.speed;
+        if (this.radius > Math.sqrt(w * w + h * h)) {
+          this.reset();
+        }
+      }
+      draw(ctx) {
+        const x = w / 2 + Math.cos(this.angle) * this.radius;
+        const y = h / 2 + Math.sin(this.angle) * this.radius;
+        ctx.beginPath();
+        ctx.arc(x, y, this.size, 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(180, 255, 180, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    const particles = [];
+    const PARTICLE_COUNT = 150;
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(new Particle());
+    }
+
+    function loop() {
+      ctx.clearRect(0, 0, w, h);
+      for (let p of particles) {
+        p.update();
+        p.draw(ctx);
+      }
+      requestAnimationFrame(loop);
+    }
+    loop();
+  </script>
+</body>
+
+</html>

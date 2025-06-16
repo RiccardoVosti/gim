@@ -25,7 +25,7 @@ Trovo il testo molto interessante come pone il mondo fantasioso degli oggetti an
 
 
 # Esercizio 2
-- [Parallasse] (/)
+- [Parallasse] (https://riccardovosti.github.io/gim/Esercizio_2/index.html)
 
 
 # Esercizio 3B
