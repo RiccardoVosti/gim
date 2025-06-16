@@ -32,7 +32,9 @@ let colonneOccupate = new Set();
 let riflessi = [];
 let mostraDebug = true;
 
-// -------  1. Preload  -------------------------------------------------------------------------------
+let paused = false;
+
+// ------- 1. Preload  -------------------------------------------------------------------------------
 function preload() {
   img1 = loadImage('/pieno.jpg');
   img2 = loadImage('/alto.png');
@@ -97,6 +99,10 @@ function setup() {
 
 // ------- 3. Draw -------------------------------------------------------------------------------
 function draw() {
+  if (!paused) {
+    muoviTutteLeGocce();
+  }
+
   if (biancoAttivo) {
     background(0);
 
@@ -281,7 +287,7 @@ function smarcaColonnaEVicini(colonna) {
 // ------- 7. Gestione tasti ---------------------------------------------------------
 function keyPressed() {
   if (key === 'r' || key === 'R') setup();
-  if (key === 'p' || key === 'P') intervalloPassoBase = intervalloPassoBase === 6 ? 999999 : 6;
+  if (key === 'p' || key === 'P') paused = !paused;
   if (key === 'f' || key === 'F') intervalloPassoBase = 3;
   if (key === 's' || key === 'S') intervalloPassoBase = 12;
   if (key === 'n' || key === 'N') intervalloPassoBase = 6;
@@ -312,10 +318,10 @@ function creaImmagineBianca(imgOrig) {
   let imgBianca = createImage(imgOrig.width, imgOrig.height);
   imgOrig.loadPixels();
   imgBianca.loadPixels();
-  
+
   for (let i = 0; i < imgOrig.pixels.length; i += 4) {
     let alpha = imgOrig.pixels[i + 3];
-    
+
     if (alpha < 128) {
       // Trasparente: lascia tutto a 0
       imgBianca.pixels[i] = 0;
@@ -330,26 +336,18 @@ function creaImmagineBianca(imgOrig) {
       imgBianca.pixels[i + 3] = alpha; // conserva alpha originale
     }
   }
-  
+
   imgBianca.updatePixels();
   return imgBianca;
 }
 
-// ------- 10. Loop principale ---------------------------------------------------------------
-function mainLoop() {
-  muoviTutteLeGocce();
-}
-
-setInterval(mainLoop, 1000 / 60);
-
-// ------- 11. Resize finestra ---------------------------------------------------------------
+// ------- 10. Resize finestra ---------------------------------------------------------------
 function windowResized() {
   resizeCanvas(window.innerWidth, window.innerHeight);
   setup();
 
   if (biancoAttivo) {
     creaImmaginiBianche();
-  } else if (colorModeAttivo) {
-    creaImmaginiColorate();
   }
 }
+
