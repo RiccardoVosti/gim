@@ -36,22 +36,22 @@ let paused = false;
 
 // ------- 1. Preload  -------------------------------------------------------------------------------
 function preload() {
-  img1 = loadImage('/pieno.jpg');
-  img2 = loadImage('/alto.png');
-  img3 = loadImage('/medio.png');
-  img4 = loadImage('/poco.png');
-  img5 = loadImage('/pochissimo.png');
-  lineGif = loadImage('/line.gif');
-  lineGif2 = loadImage('/line2.gif');
+  img1 = loadImage('pieno.jpg');
+  img2 = loadImage('alto.png');
+  img3 = loadImage('medio.png');
+  img4 = loadImage('poco.png');
+  img5 = loadImage('pochissimo.png');
+  lineGif = loadImage('line.gif');
+  lineGif2 = loadImage('line2.gif');
 
   for (let i = 0; i < totalRiflessoFrames; i++) {
     let frameNum = i.toString().padStart(2, '0');
-    riflessoFrames[i] = loadImage(`/riflesso/riflesso_${frameNum}.png`);
+    riflessoFrames[i] = loadImage(`riflesso/riflesso_${frameNum}.png`);
   }
 
   for (let i = 0; i < totalClickFrames; i++) {
     let numero = 100 + i;
-    clickFrames[i] = loadImage(`/click/click_${numero}.png`);
+    clickFrames[i] = loadImage(`click/click_${numero}.png`);
   }
 }
 
