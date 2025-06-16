@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>orologio</title>
+	<meta name="author" content="Riccardo Vosti">
+	<meta name="description" content="Orologio">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="./icons/icon_32.png" type="image/png">
+	<link rel="icon" href="./icons/icon_256.png" type="image/png">
+	<link rel="manifest" href="./manifest.json">
+
+	<style>
+		body {
+      margin: 0;
+      background: black;
+      display: flex;
+      justify-content: center; /* centro orizzontale */
+      align-items: center;     /* centro verticale */
+      height: 100vh;
+    }
+    canvas {
+      display: block;
+	    border: 1px solid rgb(49, 49, 49);
+    }
+		html {
+			overscroll-behavior: none;
+			height: 100%;
+			margin: 0;
+			background-color: lightgray;
+		}
+
+		canvas {
+			display: block;
+		}
+
+.roboto-mono {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+	</style>
+</head>
+
+<body>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.min.js"></script>
+	<script src="./sketch.js"></script>
+</body>
+
+</html>
