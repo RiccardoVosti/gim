@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Sketch p5.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <style>
+ body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;   /* mette istruzioni sotto canvas */
+      text-align: center;
+      justify-content: center;  /* centra verticalmente */
+      align-items: center;      /* centra orizzontalmente */
+      height: 100vh;            /* tutta altezza finestra */
+      background-color: #000000;
+      color: white;
+      font-family: 'Courier New', monospace;
+      
+    }
+    #istruzioni {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      font-size: 12px;
+      width: 320px;
+      background-color: rgba(17, 17, 17, 0.8);
+      border-radius: 5px;
+      border-style: dotted;
+      border-width:1px;
+      border-color:#F7F7F7;
+      display: none;  /* nascosto di default */
+      
+    }
+
+    canvas {
+      display: block; /* elimina spazio sotto il canvas */
+    }
+  </style>
+</head>
+<body>
+  <!--creazione canvas p5js-->
+  <script src="sketch.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+
+      <div id="istruzioni">
+   <p>Usa W/S per muovere il giocatore 1 e le frecce SU/GIÙ per muovere il giocatore 2. Primo giocatore ad arrivare a 5 vince.</p> 
+  </div>
+
+</body>
+</html>

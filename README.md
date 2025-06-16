@@ -28,6 +28,12 @@ Trovo il testo molto interessante come pone il mondo fantasioso degli oggetti an
 - [Parallasse](https://riccardovosti.github.io/gim/Esercizio_2/index.html)
 
 
+# Esercizio 3A
+- [pioggia](https://riccardovosti.github.io/gim/Esercizio_3A/pioggia/index.html)
+- [neve](https://riccardovosti.github.io/gim/Esercizio_3A/neve/index.html)
+- [pong](https://riccardovosti.github.io/gim/Esercizio_3A/pong/index.html)
+
+
 # Esercizio 3B
 - [Orologio](https://riccardovosti.github.io/gim/Esercizio_3B/index.html)
 
